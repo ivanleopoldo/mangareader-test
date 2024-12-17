@@ -3,7 +3,7 @@ import { useColorScheme } from '~/lib/useColorScheme';
 
 import Icon from '~/lib/icons/Icon';
 import { NAV_THEME } from '~/lib/constants';
-import ThemeToggle from '~/components/ThemeToggle';
+import ThemeToggle from '~/components/theme-toggle';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();

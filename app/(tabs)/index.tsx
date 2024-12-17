@@ -1,17 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, ScrollView } from 'react-native';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import Icon from '~/lib/icons/Icon';
-import { searchManga } from '~/utils/scraper';
 import { useRef, useState } from 'react';
+import { MangaService } from '~/api/service/manga';
 
 export default function Home() {
   const [value, onChangeText] = useState('');
   const inputRef = useRef<TextInput>(null);
 
   const onSubmit = async () => {
-    const res = await searchManga(value.toLowerCase().replace(' ', '_'));
+    const res = await MangaService.searchManga(value.toLowerCase().replace(' ', '_'));
     console.log(JSON.stringify(res, null, 2));
   };
 
@@ -42,6 +42,7 @@ export default function Home() {
           <Icon className="text-background" name="Search" />
         </Button>
       </View>
+      <ScrollView></ScrollView>
     </View>
   );
 }
