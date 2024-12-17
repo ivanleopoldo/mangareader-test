@@ -8,6 +8,5 @@ export type SearchResult = {
   id?: string;
   title: string;
   url: string;
-  authors: string[];
   cover: string;
 };

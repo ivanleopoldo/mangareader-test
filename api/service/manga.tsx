@@ -35,11 +35,6 @@ export const MangaService = {
           title: attr?.title ?? '',
           url: attr?.href ?? '',
           cover: img ?? '',
-          authors:
-            details
-              ?.querySelector('span.item-author')
-              ?.text.split(',')
-              .map((author) => author.trim()) ?? [],
         };
       });
       return {
@@ -50,5 +45,24 @@ export const MangaService = {
       console.error(err);
       return null;
     }
+  },
+  getManga: async (url: string) => {
+    try {
+      const res = await axios.get(url, {
+        responseType: 'document',
+      });
+
+      const root = parse(res.request._response);
+      const detailsDiv = root.querySelector('div.panel-story-info');
+      const chaptersDiv = root.querySelector('div.panel-story-chapter-list');
+
+      const img = detailsDiv?.querySelector('img.img-loading')?.attributes.src;
+      const description = detailsDiv?.querySelector('div.panel-story-info-description')?.text;
+
+      return {
+        cover: img,
+        summary: description,
+      };
+    } catch (err) {}
   },
 };

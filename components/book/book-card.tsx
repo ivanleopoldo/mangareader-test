@@ -13,7 +13,7 @@ function BookCard({
       push
       href={{
         pathname: '/manga/[id]',
-        params: { id: data?.id ?? '', ...data },
+        params: { id: data?.id ?? '', url: data?.url, title: data?.title },
       }}
       className={cn(className, 'flex-1 gap-1')}
       asChild>
