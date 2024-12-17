@@ -3,17 +3,20 @@ import { TextInput, View } from 'react-native';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
 import Icon from '~/lib/icons/Icon';
+import { cn } from '~/lib/utils';
 
 export default function SearchInput({
+  className,
   callback = () => {},
 }: {
+  className?: string;
   callback?: (value?: string) => void;
 }) {
   const [value, onChangeText] = useState<string>('');
   const inputRef = useRef<TextInput>(null);
 
   return (
-    <View className="flex flex-row justify-center">
+    <View className={cn(className, 'flex flex-row justify-center')}>
       <Input
         className="flex-1 rounded-r-none"
         returnKeyType="search"
