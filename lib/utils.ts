@@ -5,7 +5,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function getSearchParam(url: string, param: string) {
+export function getSearchParam(url: string | null | undefined, param: string): string | null {
+  if (!url) return null;
+
   const include = url.includes(param);
 
   if (!include) return null;

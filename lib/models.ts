@@ -1,10 +1,13 @@
-interface Page {
-  next?: number;
-}
+export type SearchResultList = {
+  results?: SearchResult[];
+  next?: number | null;
+  lastPage?: number | null;
+};
 
-export interface SearchResult extends Page {
+export type SearchResult = {
+  id?: string;
   title: string;
   url: string;
   authors: string[];
   cover: string;
-}
+};
