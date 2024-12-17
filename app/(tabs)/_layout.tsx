@@ -5,6 +5,8 @@ import Icon from '~/lib/icons/Icon';
 import { NAV_THEME } from '~/lib/constants';
 import ThemeToggle from '~/components/theme-toggle';
 import { cn } from '~/lib/utils';
+import { Button } from '~/components/ui/button';
+import { router } from 'expo-router';
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme();
@@ -46,6 +48,18 @@ export default function TabLayout() {
           tabBarIcon: ({ focused }) => (
             <Icon name="Settings" className={cn(focused ? 'text-foreground' : 'text-primary')} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="manga/[id]"
+        options={{
+          headerLeft: () => (
+            <Button onPress={() => router.back()} size={'icon'} variant={'ghost'}>
+              <Icon name="ChevronLeft" />
+            </Button>
+          ),
+          title: 'Manga',
+          href: null,
         }}
       />
     </Tabs>
