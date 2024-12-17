@@ -3,7 +3,7 @@
     "name": "webscrape",
     "slug": "webscrape",
     "version": "1.0.0",
-
+    "newArchEnabled": true,
     "scheme": "webscrape",
     "web": {
       "bundler": "metro",
@@ -20,7 +20,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
 
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
 
     "splash": {
       "image": "./assets/splash.png",
@@ -29,6 +29,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true
     },
     "android": {

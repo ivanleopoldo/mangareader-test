@@ -1,31 +1,37 @@
-import { Link, Tabs } from 'expo-router';
+import { Tabs } from 'expo-router';
+import { useColorScheme } from '~/lib/useColorScheme';
 
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+import Icon from '~/lib/icons/Icon';
+import { NAV_THEME } from '~/lib/constants';
+import ThemeToggle from '~/components/ThemeToggle';
 
 export default function TabLayout() {
+  const { colorScheme } = useColorScheme();
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: NAV_THEME[colorScheme].primary,
+        tabBarStyle: {
+          borderTopWidth: 1,
+        },
+        headerStyle: {
+          borderBottomWidth: 1,
+        },
+        headerRight: () => <ThemeToggle />,
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
-          ),
+          headerTitle: 'Library',
+          tabBarIcon: ({ color }) => <Icon name="Library" color={color} />,
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
           title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <Icon name="Compass" color={color} />,
         }}
       />
     </Tabs>
