@@ -19,5 +19,5 @@ export type MangaChapter = {
 
 export type Manga = {
   details: MangaDetails;
-  chapters: MangaChapter[];
+  chapters?: MangaChapter[];
 };
