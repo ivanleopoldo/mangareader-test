@@ -1,13 +1,13 @@
 import { Link } from 'expo-router';
 import { Image, ImageProps, Pressable, Text, View } from 'react-native';
-import { SearchResult } from '~/lib/models';
+import { MangaDetails } from '~/lib/models';
 import { cn } from '~/lib/utils';
 
 function BookCard({
   className,
   data,
   ...imageProps
-}: { className?: string; data: SearchResult | undefined } & ImageProps) {
+}: { className?: string; data: MangaDetails | undefined } & ImageProps) {
   return (
     <Link
       push

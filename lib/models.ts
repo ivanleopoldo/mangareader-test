@@ -1,12 +1,23 @@
-export type SearchResultList = {
-  results?: SearchResult[];
+export type MangaList = {
+  results?: MangaDetails[];
   next?: number | null;
   lastPage?: number | null;
 };
 
-export type SearchResult = {
-  id?: string;
+export type MangaDetails = {
+  id: string;
   title: string;
   url: string;
-  cover: string;
+  cover?: string;
+  summary?: string;
+};
+
+export type MangaChapter = {
+  title: string;
+  url: string;
+};
+
+export type Manga = {
+  details: MangaDetails;
+  chapters: MangaChapter[];
 };

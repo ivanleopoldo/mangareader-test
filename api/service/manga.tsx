@@ -1,11 +1,11 @@
 import axios from '~/lib/axios';
 import { searchURL } from '~/lib/constants';
-import { SearchResultList } from '~/lib/models';
+import { MangaList } from '~/lib/models';
 import { parse } from 'node-html-parser';
 import { getSearchParam } from '~/lib/utils';
 
 export const MangaService = {
-  searchManga: async (keyword: string, pageNumber: number): Promise<SearchResultList | null> => {
+  searchManga: async (keyword: string, pageNumber: number): Promise<MangaList | null> => {
     try {
       const res = await axios.get(`${searchURL}/${keyword.toLowerCase().replace(' ', '_')}`, {
         responseType: 'document',
