@@ -1,6 +1,6 @@
 import axios from '~/lib/axios';
 import { searchURL } from '~/lib/constants';
-import { MangaList } from '~/lib/models';
+import { MangaDetails, MangaList } from '~/lib/models';
 import { parse } from 'node-html-parser';
 import { getSearchParam } from '~/lib/utils';
 
@@ -46,7 +46,7 @@ export const MangaService = {
       return null;
     }
   },
-  getManga: async (url: string) => {
+  getManga: async (url: string, data: MangaDetails) => {
     try {
       const res = await axios.get(url, {
         responseType: 'document',
@@ -60,8 +60,12 @@ export const MangaService = {
       const description = detailsDiv?.querySelector('div.panel-story-info-description')?.text;
 
       return {
-        cover: img,
-        summary: description,
+        details: {
+          title: data?.title ?? '',
+          url: data?.url ?? url,
+          cover: data?.cover ?? img,
+          summary: description,
+        },
       };
     } catch (err) {}
   },
