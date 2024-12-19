@@ -6,7 +6,6 @@ import { MangaService } from '~/api/service/manga';
 import { BookCard } from '~/components/book';
 import SearchInput from '~/components/search-input';
 import { MangaDetails } from '~/lib/models';
-import { cn } from '~/lib/utils';
 
 export default function Home() {
   const [search, setSearch] = useState<string | null | undefined>(null);
@@ -33,13 +32,7 @@ export default function Home() {
 
   const renderItem = useCallback(
     ({ item, index }: { item: MangaDetails; index: number }) => (
-      <BookCard
-        data={item}
-        className={cn('', {
-          'mr-22': index % 2 === 0,
-          'ml-22': index % 2 === 1,
-        })}
-      />
+      <BookCard data={item} className="p-2" />
     ),
     []
   );
