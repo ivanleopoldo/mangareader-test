@@ -27,8 +27,8 @@ function BookCard({ className, data }: { className?: string; data: MangaDetails 
             aspectRatio: 3 / 4,
           }}
         />
-        <View>
-          <Text className="text-foreground">{data?.title}</Text>
+        <View className="flex items-center">
+          <Text className="text-center text-foreground">{data?.title}</Text>
         </View>
       </Pressable>
     </Link>
