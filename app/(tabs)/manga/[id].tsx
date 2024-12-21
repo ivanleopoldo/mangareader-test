@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { MangaService } from '~/api/service/manga';
 import { MangaDetails } from '~/lib/models';
-import Image from '~/components/native/Image';
+import { Image } from 'expo-image';
 
 export default function Manga() {
   const params = useLocalSearchParams();
@@ -16,20 +16,23 @@ export default function Manga() {
     },
   });
 
+  console.log(data);
+
   if (isLoading) return <Text>Loading...</Text>;
 
   return (
-    <View>
+    <ScrollView>
       <Image
-        className="h-20 w-20"
+        contentFit="fill"
+        className="rounded"
         source={{
           uri: params.cover,
-          cacheKey: params.id,
+          aspectRatio: 3 / 4,
         }}
         cachePolicy={'memory-disk'}
       />
       <Text className="text-foreground">{data?.details.title}</Text>
       <Text className="text-foregroun:">{data?.details.summary}</Text>
-    </View>
+    </ScrollView>
   );
 }
