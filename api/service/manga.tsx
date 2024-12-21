@@ -7,7 +7,7 @@ import { getSearchParam } from '~/lib/utils';
 export const MangaService = {
   searchManga: async (keyword: string, pageNumber: number): Promise<MangaList | null> => {
     try {
-      const res = await axios.get(`${searchURL}/${keyword.toLowerCase().replace(' ', '_')}`, {
+      const res = await axios.get(`${searchURL}/${keyword.toLowerCase().replaceAll(' ', '_')}`, {
         responseType: 'document',
         params: {
           page: pageNumber,
@@ -37,6 +37,7 @@ export const MangaService = {
           cover: img ?? '',
         };
       });
+
       return {
         results: page,
         next: currentPageNumber < lastPageNumber ? currentPageNumber + 1 : null,
