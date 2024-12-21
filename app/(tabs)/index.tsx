@@ -1,14 +1,18 @@
-import { FlashList } from '@shopify/flash-list';
+import { FlashList, FlashListProps } from '@shopify/flash-list';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useCallback, useState } from 'react';
-import { Text, View } from 'react-native';
+import { useCallback, useMemo, useState } from 'react';
+import { SafeAreaView, Text, View } from 'react-native';
 import { MangaService } from '~/api/service/manga';
 import { BookCard } from '~/components/book';
 import SearchInput from '~/components/search-input';
 import { MangaDetails } from '~/lib/models';
+import useInsets from '~/lib/hooks/use-insets';
 
 export default function Home() {
   const [search, setSearch] = useState<string | null | undefined>(null);
+  const insets = useInsets();
+
+  console.log(insets);
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
     queryKey: ['search', search],
@@ -50,12 +54,24 @@ export default function Home() {
           estimatedItemSize={58}
           data={data?.pages.map((page) => page?.results ?? []).flat()}
           renderItem={renderItem}
+          onEndReachedThreshold={0.8}
           onEndReached={() => {
             if (hasNextPage) {
               fetchNextPage();
             }
           }}
-          onEndReachedThreshold={0.8}
+          ListFooterComponent={() => {
+            if (data?.pages) {
+              return (
+                <SafeAreaView className="h-20 bg-red-500">
+                  <Text>End of list</Text>
+                </SafeAreaView>
+              );
+            }
+          }}
+          ListFooterComponentStyle={{
+            paddingBottom: insets.bottom,
+          }}
         />
       </View>
     </View>
